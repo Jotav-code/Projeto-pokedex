@@ -3,18 +3,19 @@ import { pokeApi } from "./poke-api.js";
 // const pokemonTypesToLi = (poke)=>{
 //     return poke.map((typos) => `<li class="type">${typos.type.name}</li>`)
 // }
-
-const pokemonList = document.getElementById('pokemonList')
+const offseat = 0
+const limit = 5
+const loadMoreItens = document.getElementById('loadMoreButton')
 
 
 function displayPokemonToHtml(pokemon){
-    return `<li class="pokemon">
+    return `<li class="pokemon ${pokemon.type}">
                 <span class="number">#${pokemon.order}</span>
                 <span class="name">${pokemon.name}</span>
                 
                 <div class="datail">
                     <ol class="types">
-                       ${pokemon.types.map((typos) => `<li class="type">${typos}</li>`)}
+                       ${pokemon.types.map((typos) => `<li class="type ${typos}">${typos}</li>`).join('')}
                     </ol>
                     <img src="${pokemon.photo}" alt="${pokemon.name}">
                 </div>
@@ -26,10 +27,20 @@ function displayPokemonToHtml(pokemon){
 //     pokemonList.innerHTML = pokemonLista.map((pokemon)=> displayPokemonToHtml(pokemon)).join('')
 // })
 
-pokeApi.listPoke().then((pokemonLista = []) => {
+
+
+function loadItens(offseat, limit){
+    pokeApi.listPoke(offseat,limit).then((pokemonLista = []) => {
     pokemonList.innerHTML = pokemonLista.map((pokemon) => displayPokemonToHtml(pokemon)).join('');
 });
+}
+loadItens(offseat,limit)
 
+const pokemonList = document.getElementById('pokemonList')
+
+loadMoreItens.addEventListener('click', ()=>{
+    
+})
 
 
 

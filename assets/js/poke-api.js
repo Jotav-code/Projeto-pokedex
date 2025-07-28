@@ -5,10 +5,12 @@ pokeApi.convertListPokemon = (pokemonDetails) => {
     const pokemon = new Pokemon();
 
     pokemon.name = pokemonDetails.name;
-    pokemon.order = pokemonDetails.order;
+    pokemon.order = pokemonDetails.id;
     pokemon.photo = pokemonDetails.sprites.other.dream_world.front_default;
-    pokemon.type = pokemonDetails.types.map((typeSlot) => typeSlot.name)
     pokemon.photo = pokemonDetails.sprites.other.dream_world.front_default;
+    pokemon.types = pokemonDetails.types.map((typeSlot) => typeSlot.type.name);
+    const [type] = pokemonDetails.types.map((typeSlot) => typeSlot.type.name);
+    pokemon.type = type;
 
     return pokemon;
 }
@@ -20,7 +22,8 @@ pokeApi.getPokemon = (pokemonDetails) =>{
         .then((pokemonComDetalhes)=> pokeApi.convertListPokemon(pokemonComDetalhes))
 }
 
-pokeApi.listPoke = (offseat = 0, limit = 10)=>{
+
+pokeApi.listPoke = (offseat = 0, limit= 5)=>{
 
     const url = `https://pokeapi.co/api/v2/pokemon/?offset=${offseat}&limit=${limit}`;
 

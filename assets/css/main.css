@@ -28,6 +28,7 @@
 .pokemon .name{
     margin-bottom: .25rem;
     color: #fff;
+    text-transform: capitalize;
 }
 .pokemon .datail{
     display: flex;
@@ -36,7 +37,9 @@
     align-items: center;
 }
 .type{
+    filter: brightness(1.1);
     color: white;
+    text-align: center;
     background: #61e1ca;
     padding: .25rem .5rem;
     font-size: .625rem;
@@ -150,7 +153,9 @@ body {
     background-color: #6c79db;
     border: none;
     border-radius: 1rem;
+    cursor: pointer;
 }
+
 
 @media screen and (min-width: 380px) {
     .pokemos {
