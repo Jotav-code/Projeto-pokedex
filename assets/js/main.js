@@ -1,8 +1,8 @@
 import { pokeApi } from "./poke-api.js";
 
-const pokemonTypesToLi = (poke)=>{
-    return poke.map((typos) => `<li class="type">${typos.type.name}</li>`)
-}
+// const pokemonTypesToLi = (poke)=>{
+//     return poke.map((typos) => `<li class="type">${typos.type.name}</li>`)
+// }
 
 const pokemonList = document.getElementById('pokemonList')
 
@@ -10,13 +10,13 @@ const pokemonList = document.getElementById('pokemonList')
 function displayPokemonToHtml(pokemon){
     return `<li class="pokemon">
                 <span class="number">#${pokemon.order}</span>
-                <span class="name">${pokemon.species.name}</span>
+                <span class="name">${pokemon.name}</span>
                 
                 <div class="datail">
                     <ol class="types">
-                        ${pokemonTypesToLi(pokemon.types).join('')}
+                       ${pokemon.types.map((typos) => `<li class="type">${typos}</li>`)}
                     </ol>
-                    <img src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.species.name}">
+                    <img src="${pokemon.photo}" alt="${pokemon.name}">
                 </div>
             </li>`
 }
